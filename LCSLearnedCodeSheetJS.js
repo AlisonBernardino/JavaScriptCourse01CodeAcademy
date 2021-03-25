@@ -1264,7 +1264,7 @@ asyncFuncExample01();
 let myPromise = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve('Yay, I resolved!')
+            resolve('Yay, I resolved this code!')
         }, 1000);
     });
 }
