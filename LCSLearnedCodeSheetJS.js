@@ -1264,7 +1264,7 @@ asyncFuncExample01();
 let myPromise = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve('Yay, I resolved!')
+            resolve('Yay, I resolved this code!')
         }, 1000);
     });
 }
@@ -1282,3 +1282,113 @@ async function yesAwait() {
 
 noAwait(); // This will print: Promise {<pending>}
 yesAwait(); // Prints: Yay, I resolved!
+
+
+// My code
+const shopForBeans = require('./library.js');
+
+async function getBeans() {
+    console.log(`1 - Heading to the
+    store to buy beans...`);
+    let value = await shopForBeans();
+    console.log(`3 - Great! Im making ${value} beans for dinner tonight!`);
+}
+
+getBeans();
+
+
+// Code 41 - Handling dependent promisses
+
+// Example code 01
+function nativePromiseVersion() {
+    returnsFirstPromise()
+        .then((firstValue) => {
+            console.log(firstValue);
+            return returnsSecondPromise(firstValue);
+        })
+        .then((secondValue) => {
+            console.log(secondValue);
+        });
+}
+
+// Example code 02
+async function asyncAwaitVersion() {
+    let firstValue = await returnsFirstPromise();
+    console.log(firstValue);
+    let secondValue = await returnsSecondPromise(firstValue);
+    console.log(secondValue);
+}
+
+// My code
+const { shopForBeans, soakTheBeans,
+    cookTheBeans } = require('./library.js');
+
+async function makeBeans() {
+    let type = await shopForBeans();
+    let isSoft = await soakTheBeans(type);
+    let dinner = await cookTheBeans(isSoft);
+    console.log(dinner);
+}
+
+makeBeans();
+
+
+// Code 42 - Handling errors
+
+// Example code 01
+async function usingTryCatch() {
+    try {
+        let resolveValue = await asyncFunction('This will fail');
+        let secondValue = await secondAsyncFunction(resolveValue);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+usingTryCatch();
+
+
+// Example code 02
+async function usingPromiseCatch() {
+    let resolvedValue = await asyncFunction('This will fail - Version 02');
+}
+
+let rejectedPromise = usingPromiseCatch();
+rejectedPromise.catch((rejectValue) => {
+    console.log(rejectValue);
+})
+
+
+// My code
+const cookBeanSouffle = require('./library.js');
+
+async function hostDinnerParty() {
+    try {
+        let dinner = await cookBeanSouffle();
+        console.log(`${dinner} is served!`);
+    }
+    catch (error) {
+        console.log(error);
+        console.log('The pizza is being ordered!');
+    }
+}
+
+hostDinnerParty();
+
+
+// Code 43 - Handling independent functions
+
+async function writing() {
+    const firstValue = await firstAsyncThing();
+    const secondValue = await secondAsyncThing();
+    console.log(firstValue, secondValue);
+}
+
+async function concurrent() {
+    const firstPromise = firstasyncThing();
+    const secondPromise = secondAsyncThing();
+    console.log(await firstPromise, await secondPromise);
+}
+
+
+
