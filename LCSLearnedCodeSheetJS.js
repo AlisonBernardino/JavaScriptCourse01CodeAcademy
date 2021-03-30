@@ -1422,7 +1422,7 @@ async function asyncPromAll() {
 // Don’t forget to await Promise.all()! 
 // Your code may follow a similar pattern to this:
 
-async function myFunction(){
+async function myFunction() {
     let myArray = await Promise.all([returnsPromise001(),
     returnsPromise002(), returnsPromise003()]);
 }
@@ -1461,6 +1461,60 @@ ${protein}, and ${side}`);
 // for POST requests. To complete the exercise on POST, make sure you create 
 // a Rebrandly API Key by following the instructions in the article below:
 // https://www.codecademy.com/articles/rebrandly-signup
+
+// Example code 01
+
+const jsonButton = document.querySelector('#generate');
+const buttonContainer = document.querySelector('#buttonContainer');
+const display = document.querySelector('#displayContainer');
+const collection = ["Another", "More", "Next", "Continue", "Keep going", "Click me", "A new one"];
+
+const generateJson = () => {
+    const XR3DA = new XMLHttpRequest();
+    XR3DA.responseType = 'json';
+
+    XR3DA.onreadystatechange = () => {
+        if (XR3DA.readyState === XMLHttpRequest.DONE) {
+            renderResponse(X3RDA.response);
+            changeButton();
+        }
+    }
+    XR3DA.open('GET', 'https://jsonplaceholder.typicode.com/users');
+    XR3DA.send();
+}
+
+const formatJson = (resJson) => {
+    resJson = JSON.stringify(resJson);
+    let counter = 0;
+    return resJson.split('').map(char => {
+        switch (char) {
+            case ',':
+                return `,\n${''.repeat(counter * 2)}`;
+            case '{':
+                counter =+ 1;
+                return `{\n${''.repeat(counter*2)}`;
+            case '}':
+                counter-= 1;
+                return `\n${''.repeat(counter*2)}}`;
+            default:
+                return char;
+        }
+    })
+    .join('');
+}
+
+const renderResponse = (jsonResponse) => {
+    const jsonSelection = Math.floor(Math.random() * 15);
+    display.innerHTML = `<pre>${formatJson(jsonResponse[jsonSelection])}</pre>`;
+}
+
+const changeButton = () => {
+    const newText = Math.floor(Math.random() * 7);
+    jsonButton.innerHTML = `${collection[newText]}!`;
+}
+
+jsonButton.addEventListener('click', generateJson);
+
 
 
 
