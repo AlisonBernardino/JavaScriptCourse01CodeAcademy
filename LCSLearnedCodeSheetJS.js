@@ -1515,6 +1515,23 @@ const changeButton = () => {
 
 jsonButton.addEventListener('click', generateJson);
 
+// Concurrency model and event loop - Stack
+
+// Example code 01
+function foo(y){
+    let x = 10
+    return x + y + 11 
+}
+
+function bar(a){
+    let b = 3
+    return foo(a * b)
+}
+
+console.log(bar(7)) // Returns 42
+
+
+
 
 
 
