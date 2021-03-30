@@ -1378,6 +1378,7 @@ hostDinnerParty();
 
 // Code 43 - Handling independent functions
 
+// Example code 01
 async function writing() {
     const firstValue = await firstAsyncThing();
     const secondValue = await secondAsyncThing();
@@ -1389,6 +1390,77 @@ async function concurrent() {
     const secondPromise = secondAsyncThing();
     console.log(await firstPromise, await secondPromise);
 }
+
+
+// My code
+let { cookBeans, steamBroccoli, cookRice, bakeChicken } = require('./library.js');
+
+async function serveDinner() {
+    const vegetablePromise = steamBroccoli();
+    const starchPromise = cookRice();
+    const proteinPromise = bakeChicken();
+    const sidePromise = cookBeans();
+    console.log(`Dinner is served. We're having ${await vegetablePromise}, ${await starchPromise
+        }, ${await proteinPromise}, and ${await sidePromise}.`);
+}
+
+serveDinner();
+
+
+// Code 44 - Await Promise.all()
+
+// Example code 01
+async function asyncPromAll() {
+    const resultArray = await Promise.all([asyncTask001(), asyncTask002(),
+    asyncTask003(), asyncTask004()]);
+    for (let x = 0; x < resultArray.length; x++) {
+        console.log(resultArray[x]);
+    }
+}
+
+// Hint 01
+// Don’t forget to await Promise.all()! 
+// Your code may follow a similar pattern to this:
+
+async function myFunction(){
+    let myArray = await Promise.all([returnsPromise001(),
+    returnsPromise002(), returnsPromise003()]);
+}
+
+
+// Hint 02
+// Now that you have an array holding each of the promises’ 
+// resolved values, you can use string interpolation 
+// or concatenation to log the required string.
+
+// One option is to save variable for each value:
+
+let vegetable = foodArray[0];
+let starch = foodArray[1];
+let protein = foodArray[2];
+let side = foodArray[3];
+
+console.log(`Dinner is served. We're having ${vegetable}, ${starch},
+${protein}, and ${side}`);
+
+
+// =================== Requests =================================
+
+// Links
+
+// Link 01 =
+// There are many types of HTTP requests. 
+// The four most commonly used types of HTTP requests are GET, POST, PUT, and DELETE.
+// In this lesson, we’ll cover GET and POST requests. If you want 
+// to learn more about the different HTTP requests, we recommend 
+// the following documentation:
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+
+// Link 02 =
+// We’ll use the Datamuse API for GET requests and the Rebrandly URL Shortener API 
+// for POST requests. To complete the exercise on POST, make sure you create 
+// a Rebrandly API Key by following the instructions in the article below:
+// https://www.codecademy.com/articles/rebrandly-signup
 
 
 
