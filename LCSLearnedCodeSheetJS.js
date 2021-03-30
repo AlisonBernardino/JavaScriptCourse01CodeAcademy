@@ -1462,7 +1462,8 @@ ${protein}, and ${side}`);
 // a Rebrandly API Key by following the instructions in the article below:
 // https://www.codecademy.com/articles/rebrandly-signup
 
-// Example code 01
+// Code 45 
+// Example code 01 
 
 const jsonButton = document.querySelector('#generate');
 const buttonContainer = document.querySelector('#buttonContainer');
@@ -1515,7 +1516,7 @@ const changeButton = () => {
 
 jsonButton.addEventListener('click', generateJson);
 
-// Concurrency model and event loop - Stack
+// Code 46 - Concurrency model and event loop - Stack
 
 // Example code 01
 function foo(y){
@@ -1529,6 +1530,81 @@ function bar(a){
 }
 
 console.log(bar(7)) // Returns 42
+
+
+// Code 47 - Adding messages
+
+// Code example 01
+const sVar = new Date().getSeconds();
+setTimeout(function(){
+    // Prints out "2", meaning tha tthe callback is not
+    // called immediately after 500ms (milliseconds).
+    console.log("Ran after " + (new Date().getSeconds() - sVar) + "seconds.");
+}, 500)
+
+while (true){
+    if (new Date().getSeconds() - sVar >= 2){
+        console.log("Good, looped for 02 seconds.")
+        break;
+    }
+}
+
+
+// Code 48 - Zero delays
+
+(function() {
+    console.log('this is the start');
+
+    setTimeout(function cbVar(){
+        console.log('Callback 01 = This is a message from callback');
+        }); // Default time value = 0
+
+    console.log('this is just a message');
+
+    setTimeout(function cbVar01(){
+        console.log('Callback 02: this is a message from callback' );
+    },0);
+
+    console.log('This is the end');
+
+})();
+
+// "This is the start"
+// "This is just a message"
+// "This is the end"
+// "Callback 01: This is a message from callback"
+// "Callback 02: This is a message from callback"
+
+// setTimeout function
+// My code
+
+console.log('First message!');
+setTimeout(() => {
+    console.log('This message will always run last...');
+}, 2500); // Or this value can be changed for 0
+console.log('Second message!');
+
+// Code 49 - XHR GET Request I
+
+// Code example 01
+
+//XMLHttpRequest GET
+
+const xhr = new XMLHttpRequest(); // Creates a new object
+const url = 'http://api-to-call.com/endpoint';
+
+xhr.responseType = 'json';
+xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE){
+        // Code to execute with response
+    }
+};
+
+// From line 1596 to line 1601 = Handles response
+
+xhr.open('GET', url);   // This opens a request
+xhr.send();             // and sends the object
+
 
 
 
