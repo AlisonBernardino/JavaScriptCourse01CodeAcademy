@@ -1606,8 +1606,113 @@ xhr.open('GET', url);   // This opens a request
 xhr.send();             // and sends the object
 
 
+// Code 50 - XML Get Request III
+
+// My code
+// Information to reach API
+const url = 'https://api.datamuse.com/words?';
+const queryParams = 'rel_rhy=';
+
+// Selecting page elements
+const inputField = document.querySelector('#input');
+const submit = document.querySelector('#submit');
+const responseFields = document.querySelector('#responseField');
+
+// AJAX functions
+const getSuggestions = () => {
+    const wordQuery = inputField.value;
+    const endpoint = `${url}${queryParams}${wordQuery}`;
+    
+    const xhr = new XMLHttpRequest();
+    xhr.responseType='json';
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            // renderRawResponse(xhr.response);
+            // The line above can be replaced by:
+            renderResponse(xhr.response); 
+        }
+    }
+
+    xhr.open('GET',endpoint);
+    xhr.send();
+}
+
+// To clear the previous results and show
+// the results on webpage
+
+const displaySuggestion = (event) => {
+    event.preventDefault();
+    while(responseFields.firstChild){
+        responseFields.removeChild(responseField.firstChild);
+    };
+    getSuggestions();
+}
+
+submit.addEventListener('click', displaySuggestions);
+
+    
+// Code 51 - XML GET Requests IV
+
+// Information to reach API
+const url = 'https://api.datamuse.com/words?';
+const queryParams = 'rel_jjb=';
+
+// Selecting page elements
+const inputField = document.querySelector('#input');
+const topicField = document.querySelector('#topic');
+const submit = document.querySelector('#submit');
+const responseField = document.querySelector('#responseField');
+
+// AJAX function
+const getSuggestions = () => {
+    const wordQuery = inputField.value;
+    const topicQuery = topicField.value;
+    const endpoints = `${url}${queryParams}${wordQuery}${additionalParams}${topicQuery}`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            renderResponse(xhr.response);
+        }
+    }
+
+    xhr.open('GET',endpoint);
+    xhr.send();
+}
+
+const additionalParams = '&topics=';
+
+// Clear previous results and shows the results to webpage
+const displaySuggestions = (event) => {
+    event.preventDefault();
+    while(responseField.firstChild){
+        responseField.removeChild(responseField.firstChild);
+    }
+    getSuggestions();
+}
+
+submit.addEventListener('click', displaySuggestions);
 
 
+// XHR POST Requests I
 
+// XMLHttpRequest POST
 
+const xhr = new XMLHttpRequest();
+const url = 'http://api-to-call.com/endpoint';
+const data = JSON.stringify(id: '200'); // Converts data to a string
+
+xhr.responseType = 'json';
+xhr.onreadystatechange = () => {
+    if(xhr.readyState === XMLHttpRequest.DONE){
+        // Code to be executed with response
+    }
+};
+
+// From line 1707 to line 1712 = Code for response handling
+
+xhr.open('POST',url);   // This code opens request
+xhr.send(data);         // and sends object
 
