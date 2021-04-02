@@ -1696,7 +1696,7 @@ const displaySuggestions = (event) => {
 submit.addEventListener('click', displaySuggestions);
 
 
-// XHR POST Requests I
+// Code 52 - XHR POST Requests I
 
 // XMLHttpRequest POST
 
@@ -1715,4 +1715,98 @@ xhr.onreadystatechange = () => {
 
 xhr.open('POST',url);   // This code opens request
 xhr.send(data);         // and sends object
+
+
+// Code 53 - XHR POST Requests III
+
+// Information to reach API
+const apiKey = '<2bcd65023e6c47bca9c93efaa238b6ee>';
+const url = 'https://api.rebrandly.com/v1/links';
+
+// Some page elements
+const inputField = document.querySelector('#input');
+const shortenButton = document.querySelector('#shorten');
+const responseField = document.querySelector('#responseField');
+
+// AJAX functions
+const shortenUrl = () => {
+    const urlToShorten = inputField.value;
+    const data = JSON.stringify({destination: urlToShorten});
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            renderResponse(xhr.response);
+        }
+    }
+
+    xhr.open('POST',url);
+    xhr.setRequestHeader('Content-type','application/json');
+    xhr.setRequestHeader('apikey',apiKey);
+    xhr.send(data);
+}
+
+// Clear page and call AJAX functions
+const displayShortUrl = (event) => {
+    event.preventDefault();
+    while(responseField.firstChild){
+        responseField.removeChild(responseField.firstChild);
+    }
+    shortenUrl();
+}
+
+shortenButton.addEventListener('click',displayShortUrl);
+
+
+// Code 54 - Intro to requests
+
+const jsonButton = document.querySelector('#generate');
+const buttonContainer = document.querySelector('#buttonContainer');
+const collection = ["Another", "More","Next","Continue","Keep going", "Click me", "A new one"];
+
+const generateJson = async () => {
+    try{
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        if(response.ok){
+            const jsonResponse = await response.json();
+            renderResponse(jsonResponse);
+            changeButton();
+        }
+    } catch(error){
+        console.log(error);
+    }
+};
+
+const formatJson = (resJson) => {
+        resJson = JSON.stringify(resJson);
+        let counter = 0;
+        return resJson.split('').map(char => {
+            switch(char){
+                case ',':
+                    return `,\n${''.repeat(counter * 2)}`;
+                case '{':
+                    counter += 1;
+                    return `{\n${''.repeat(counter *2)}`;
+                case '}':
+                    counter -= 1;
+                    return `\n${''.repeat(counter *2)}}`;
+                default:
+                    return char;
+            }
+        })
+        .join('');
+};
+
+const renderResponse = (jsonResponse) => {
+    const jsonSelection = Math.floor(Math.random() * 10);
+    display.innerHTML = `<pre>${formatJson(jsonResponse[jsonSelection])}</pre>`;
+};
+
+const changeButton = () => {
+    const newText = Math.floor(Math.random() * 7);
+    jsonButton.innerHTML = `${collection[newText]}!`;
+};
+
+jsonButton.addEventListener('click',generateJson);
 
