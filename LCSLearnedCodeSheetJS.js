@@ -1392,336 +1392,336 @@ async function concurrent() {
 }
 
 
-// My code
-let { cookBeans, steamBroccoli, cookRice, bakeChicken } = require('./library.js');
-
-async function serveDinner() {
-    const vegetablePromise = steamBroccoli();
-    const starchPromise = cookRice();
-    const proteinPromise = bakeChicken();
-    const sidePromise = cookBeans();
-    console.log(`Dinner is served. We're having ${await vegetablePromise}, ${await starchPromise
-        }, ${await proteinPromise}, and ${await sidePromise}.`);
-}
-
-serveDinner();
-
-
-// Code 44 - Await Promise.all()
-
-// Example code 01
-async function asyncPromAll() {
-    const resultArray = await Promise.all([asyncTask001(), asyncTask002(),
-    asyncTask003(), asyncTask004()]);
-    for (let x = 0; x < resultArray.length; x++) {
-        console.log(resultArray[x]);
-    }
-}
-
-// Hint 01
-// Don’t forget to await Promise.all()! 
-// Your code may follow a similar pattern to this:
-
-async function myFunction() {
-    let myArray = await Promise.all([returnsPromise001(),
-    returnsPromise002(), returnsPromise003()]);
-}
-
-
-// Hint 02
-// Now that you have an array holding each of the promises’ 
-// resolved values, you can use string interpolation 
-// or concatenation to log the required string.
-
-// One option is to save variable for each value:
-
-let vegetable = foodArray[0];
-let starch = foodArray[1];
-let protein = foodArray[2];
-let side = foodArray[3];
-
-console.log(`Dinner is served. We're having ${vegetable}, ${starch},
-${protein}, and ${side}`);
-
-
-// =================== Requests =================================
-
-// Links
-
-// Link 01 =
-// There are many types of HTTP requests. 
-// The four most commonly used types of HTTP requests are GET, POST, PUT, and DELETE.
-// In this lesson, we’ll cover GET and POST requests. If you want 
-// to learn more about the different HTTP requests, we recommend 
-// the following documentation:
-// https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
-
-// Link 02 =
-// We’ll use the Datamuse API for GET requests and the Rebrandly URL Shortener API 
-// for POST requests. To complete the exercise on POST, make sure you create 
-// a Rebrandly API Key by following the instructions in the article below:
-// https://www.codecademy.com/articles/rebrandly-signup
-
-// Code 45 
-// Example code 01 
-
-const jsonButton = document.querySelector('#generate');
-const buttonContainer = document.querySelector('#buttonContainer');
-const display = document.querySelector('#displayContainer');
-const collection = ["Another", "More", "Next", "Continue", "Keep going", "Click me", "A new one"];
-
-const generateJson = () => {
-    const XR3DA = new XMLHttpRequest();
-    XR3DA.responseType = 'json';
-
-    XR3DA.onreadystatechange = () => {
-        if (XR3DA.readyState === XMLHttpRequest.DONE) {
-            renderResponse(X3RDA.response);
-            changeButton();
-        }
-    }
-    XR3DA.open('GET', 'https://jsonplaceholder.typicode.com/users');
-    XR3DA.send();
-}
-
-const formatJson = (resJson) => {
-    resJson = JSON.stringify(resJson);
-    let counter = 0;
-    return resJson.split('').map(char => {
-        switch (char) {
-            case ',':
-                return `,\n${''.repeat(counter * 2)}`;
-            case '{':
-                counter = + 1;
-                return `{\n${''.repeat(counter * 2)}`;
-            case '}':
-                counter -= 1;
-                return `\n${''.repeat(counter * 2)}}`;
-            default:
-                return char;
-        }
-    })
-        .join('');
-}
+// // My code
+// let { cookBeans, steamBroccoli, cookRice, bakeChicken } = require('./library.js');
+
+// async function serveDinner() {
+//     const vegetablePromise = steamBroccoli();
+//     const starchPromise = cookRice();
+//     const proteinPromise = bakeChicken();
+//     const sidePromise = cookBeans();
+//     console.log(`Dinner is served. We're having ${await vegetablePromise}, ${await starchPromise
+//         }, ${await proteinPromise}, and ${await sidePromise}.`);
+// }
+
+// serveDinner();
+
+
+// // Code 44 - Await Promise.all()
+
+// // Example code 01
+// async function asyncPromAll() {
+//     const resultArray = await Promise.all([asyncTask001(), asyncTask002(),
+//     asyncTask003(), asyncTask004()]);
+//     for (let x = 0; x < resultArray.length; x++) {
+//         console.log(resultArray[x]);
+//     }
+// }
+
+// // Hint 01
+// // Don’t forget to await Promise.all()! 
+// // Your code may follow a similar pattern to this:
+
+// async function myFunction() {
+//     let myArray = await Promise.all([returnsPromise001(),
+//     returnsPromise002(), returnsPromise003()]);
+// }
+
+
+// // Hint 02
+// // Now that you have an array holding each of the promises’ 
+// // resolved values, you can use string interpolation 
+// // or concatenation to log the required string.
+
+// // One option is to save variable for each value:
+
+// let vegetable = foodArray[0];
+// let starch = foodArray[1];
+// let protein = foodArray[2];
+// let side = foodArray[3];
+
+// console.log(`Dinner is served. We're having ${vegetable}, ${starch},
+// ${protein}, and ${side}`);
+
+
+// // =================== Requests =================================
+
+// // Links
+
+// // Link 01 =
+// // There are many types of HTTP requests. 
+// // The four most commonly used types of HTTP requests are GET, POST, PUT, and DELETE.
+// // In this lesson, we’ll cover GET and POST requests. If you want 
+// // to learn more about the different HTTP requests, we recommend 
+// // the following documentation:
+// // https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+
+// // Link 02 =
+// // We’ll use the Datamuse API for GET requests and the Rebrandly URL Shortener API 
+// // for POST requests. To complete the exercise on POST, make sure you create 
+// // a Rebrandly API Key by following the instructions in the article below:
+// // https://www.codecademy.com/articles/rebrandly-signup
+
+// // Code 45 
+// // Example code 01 
+
+// const jsonButton = document.querySelector('#generate');
+// const buttonContainer = document.querySelector('#buttonContainer');
+// const display = document.querySelector('#displayContainer');
+// const collection = ["Another", "More", "Next", "Continue", "Keep going", "Click me", "A new one"];
+
+// const generateJson = () => {
+//     const XR3DA = new XMLHttpRequest();
+//     XR3DA.responseType = 'json';
+
+//     XR3DA.onreadystatechange = () => {
+//         if (XR3DA.readyState === XMLHttpRequest.DONE) {
+//             renderResponse(X3RDA.response);
+//             changeButton();
+//         }
+//     }
+//     XR3DA.open('GET', 'https://jsonplaceholder.typicode.com/users');
+//     XR3DA.send();
+// }
+
+// const formatJson = (resJson) => {
+//     resJson = JSON.stringify(resJson);
+//     let counter = 0;
+//     return resJson.split('').map(char => {
+//         switch (char) {
+//             case ',':
+//                 return `,\n${''.repeat(counter * 2)}`;
+//             case '{':
+//                 counter = + 1;
+//                 return `{\n${''.repeat(counter * 2)}`;
+//             case '}':
+//                 counter -= 1;
+//                 return `\n${''.repeat(counter * 2)}}`;
+//             default:
+//                 return char;
+//         }
+//     })
+//         .join('');
+// }
 
-const renderResponse = (jsonResponse) => {
-    const jsonSelection = Math.floor(Math.random() * 15);
-    display.innerHTML = `<pre>${formatJson(jsonResponse[jsonSelection])}</pre>`;
-}
+// const renderResponse = (jsonResponse) => {
+//     const jsonSelection = Math.floor(Math.random() * 15);
+//     display.innerHTML = `<pre>${formatJson(jsonResponse[jsonSelection])}</pre>`;
+// }
 
-const changeButton = () => {
-    const newText = Math.floor(Math.random() * 7);
-    jsonButton.innerHTML = `${collection[newText]}!`;
-}
+// const changeButton = () => {
+//     const newText = Math.floor(Math.random() * 7);
+//     jsonButton.innerHTML = `${collection[newText]}!`;
+// }
 
-jsonButton.addEventListener('click', generateJson);
+// jsonButton.addEventListener('click', generateJson);
 
-// Code 46 - Concurrency model and event loop - Stack
+// // Code 46 - Concurrency model and event loop - Stack
 
-// Example code 01
-function foo(y) {
-    let x = 10
-    return x + y + 11
-}
+// // Example code 01
+// function foo(y) {
+//     let x = 10
+//     return x + y + 11
+// }
 
-function bar(a) {
-    let b = 3
-    return foo(a * b)
-}
+// function bar(a) {
+//     let b = 3
+//     return foo(a * b)
+// }
 
-console.log(bar(7)) // Returns 42
+// console.log(bar(7)) // Returns 42
 
 
-// Code 47 - Adding messages
+// // Code 47 - Adding messages
 
-// Code example 01
-const sVar = new Date().getSeconds();
-setTimeout(function () {
-    // Prints out "2", meaning tha tthe callback is not
-    // called immediately after 500ms (milliseconds).
-    console.log("Ran after " + (new Date().getSeconds() - sVar) + "seconds.");
-}, 500)
+// // Code example 01
+// const sVar = new Date().getSeconds();
+// setTimeout(function () {
+//     // Prints out "2", meaning tha tthe callback is not
+//     // called immediately after 500ms (milliseconds).
+//     console.log("Ran after " + (new Date().getSeconds() - sVar) + "seconds.");
+// }, 500)
 
-while (true) {
-    if (new Date().getSeconds() - sVar >= 2) {
-        console.log("Good, looped for 02 seconds.")
-        break;
-    }
-}
+// while (true) {
+//     if (new Date().getSeconds() - sVar >= 2) {
+//         console.log("Good, looped for 02 seconds.")
+//         break;
+//     }
+// }
 
-
-// Code 48 - Zero delays
+
+// // Code 48 - Zero delays
 
-(function () {
-    console.log('this is the start');
+// (function () {
+//     console.log('this is the start');
 
-    setTimeout(function cbVar() {
-        console.log('Callback 01 = This is a message from callback');
-    }); // Default time value = 0
+//     setTimeout(function cbVar() {
+//         console.log('Callback 01 = This is a message from callback');
+//     }); // Default time value = 0
 
-    console.log('this is just a message');
+//     console.log('this is just a message');
 
-    setTimeout(function cbVar01() {
-        console.log('Callback 02: this is a message from callback');
-    }, 0);
+//     setTimeout(function cbVar01() {
+//         console.log('Callback 02: this is a message from callback');
+//     }, 0);
 
-    console.log('This is the end');
+//     console.log('This is the end');
 
-})();
+// })();
 
-// "This is the start"
-// "This is just a message"
-// "This is the end"
-// "Callback 01: This is a message from callback"
-// "Callback 02: This is a message from callback"
+// // "This is the start"
+// // "This is just a message"
+// // "This is the end"
+// // "Callback 01: This is a message from callback"
+// // "Callback 02: This is a message from callback"
 
-// setTimeout function
-// My code
-
-console.log('First message!');
-setTimeout(() => {
-    console.log('This message will always run last...');
-}, 2500); // Or this value can be changed for 0
-console.log('Second message!');
+// // setTimeout function
+// // My code
+
+// console.log('First message!');
+// setTimeout(() => {
+//     console.log('This message will always run last...');
+// }, 2500); // Or this value can be changed for 0
+// console.log('Second message!');
 
-// Code 49 - XHR GET Request I
+// // Code 49 - XHR GET Request I
 
-// Code example 01
+// // Code example 01
 
-//XMLHttpRequest GET
-
-const xhr = new XMLHttpRequest(); // Creates a new object
-const url = 'http://api-to-call.com/endpoint';
-
-xhr.responseType = 'json';
-xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-        // Code to execute with response
-    }
-};
+// //XMLHttpRequest GET
+
+// const xhr = new XMLHttpRequest(); // Creates a new object
+// const url = 'http://api-to-call.com/endpoint';
+
+// xhr.responseType = 'json';
+// xhr.onreadystatechange = () => {
+//     if (xhr.readyState === XMLHttpRequest.DONE) {
+//         // Code to execute with response
+//     }
+// };
 
-// From line 1596 to line 1601 = Handles response
+// // From line 1596 to line 1601 = Handles response
 
-xhr.open('GET', url);   // This opens a request
-xhr.send();             // and sends the object
+// xhr.open('GET', url);   // This opens a request
+// xhr.send();             // and sends the object
 
 
-// Code 50 - XML Get Request III
+// // Code 50 - XML Get Request III
 
-// My code
-// Information to reach API
-const url = 'https://api.datamuse.com/words?';
-const queryParams = 'rel_rhy=';
+// // My code
+// // Information to reach API
+// const url = 'https://api.datamuse.com/words?';
+// const queryParams = 'rel_rhy=';
 
-// Selecting page elements
-const inputField = document.querySelector('#input');
-const submit = document.querySelector('#submit');
-const responseFields = document.querySelector('#responseField');
+// // Selecting page elements
+// const inputField = document.querySelector('#input');
+// const submit = document.querySelector('#submit');
+// const responseFields = document.querySelector('#responseField');
 
-// AJAX functions
-const getSuggestions = () => {
-    const wordQuery = inputField.value;
-    const endpoint = `${url}${queryParams}${wordQuery}`;
+// // AJAX functions
+// const getSuggestions = () => {
+//     const wordQuery = inputField.value;
+//     const endpoint = `${url}${queryParams}${wordQuery}`;
 
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            // renderRawResponse(xhr.response);
-            // The line above can be replaced by:
-            renderResponse(xhr.response);
-        }
-    }
+//     const xhr = new XMLHttpRequest();
+//     xhr.responseType = 'json';
+//     xhr.onreadystatechange = () => {
+//         if (xhr.readyState === XMLHttpRequest.DONE) {
+//             // renderRawResponse(xhr.response);
+//             // The line above can be replaced by:
+//             renderResponse(xhr.response);
+//         }
+//     }
 
-    xhr.open('GET', endpoint);
-    xhr.send();
-}
+//     xhr.open('GET', endpoint);
+//     xhr.send();
+// }
 
-// To clear the previous results and show
-// the results on webpage
+// // To clear the previous results and show
+// // the results on webpage
 
-const displaySuggestion = (event) => {
-    event.preventDefault();
-    while (responseFields.firstChild) {
-        responseFields.removeChild(responseField.firstChild);
-    };
-    getSuggestions();
-}
+// const displaySuggestion = (event) => {
+//     event.preventDefault();
+//     while (responseFields.firstChild) {
+//         responseFields.removeChild(responseField.firstChild);
+//     };
+//     getSuggestions();
+// }
 
-submit.addEventListener('click', displaySuggestions);
+// submit.addEventListener('click', displaySuggestions);
 
 
-// Code 51 - XML GET Requests IV
+// // Code 51 - XML GET Requests IV
 
-// Information to reach API
-const url = 'https://api.datamuse.com/words?';
-const queryParams = 'rel_jjb=';
+// // Information to reach API
+// const url = 'https://api.datamuse.com/words?';
+// const queryParams = 'rel_jjb=';
 
-// Selecting page elements
-const inputField = document.querySelector('#input');
-const topicField = document.querySelector('#topic');
-const submit = document.querySelector('#submit');
-const responseField = document.querySelector('#responseField');
+// // Selecting page elements
+// const inputField = document.querySelector('#input');
+// const topicField = document.querySelector('#topic');
+// const submit = document.querySelector('#submit');
+// const responseField = document.querySelector('#responseField');
 
-// AJAX function
-const getSuggestions = () => {
-    const wordQuery = inputField.value;
-    const topicQuery = topicField.value;
-    const endpoints = `${url}${queryParams}${wordQuery}${additionalParams}${topicQuery}`;
+// // AJAX function
+// const getSuggestions = () => {
+//     const wordQuery = inputField.value;
+//     const topicQuery = topicField.value;
+//     const endpoints = `${url}${queryParams}${wordQuery}${additionalParams}${topicQuery}`;
 
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
+//     const xhr = new XMLHttpRequest();
+//     xhr.responseType = 'json';
 
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            renderResponse(xhr.response);
-        }
-    }
+//     xhr.onreadystatechange = () => {
+//         if (xhr.readyState === XMLHttpRequest.DONE) {
+//             renderResponse(xhr.response);
+//         }
+//     }
 
-    xhr.open('GET', endpoint);
-    xhr.send();
-}
+//     xhr.open('GET', endpoint);
+//     xhr.send();
+// }
 
-const additionalParams = '&topics=';
+// const additionalParams = '&topics=';
 
-// Clear previous results and shows the results to webpage
-const displaySuggestions = (event) => {
-    event.preventDefault();
-    while (responseField.firstChild) {
-        responseField.removeChild(responseField.firstChild);
-    }
-    getSuggestions();
-}
+// // Clear previous results and shows the results to webpage
+// const displaySuggestions = (event) => {
+//     event.preventDefault();
+//     while (responseField.firstChild) {
+//         responseField.removeChild(responseField.firstChild);
+//     }
+//     getSuggestions();
+// }
 
-submit.addEventListener('click', displaySuggestions);
+// submit.addEventListener('click', displaySuggestions);
 
 
-// Code 52 - XHR POST Requests I
+// // Code 52 - XHR POST Requests I
 
-// XMLHttpRequest POST
+// // XMLHttpRequest POST
 
-const xhr = new XMLHttpRequest();
-const url = 'http://api-to-call.com/endpoint';
-const data = JSON.stringify(id: '200'); // Converts data to a string
+// const xhr = new XMLHttpRequest();
+// const url = 'http://api-to-call.com/endpoint';
+// const data = JSON.stringify(id: '200'); // Converts data to a string
 
-xhr.responseType = 'json';
-xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-        // Code to be executed with response
-    }
-};
+// xhr.responseType = 'json';
+// xhr.onreadystatechange = () => {
+//     if (xhr.readyState === XMLHttpRequest.DONE) {
+//         // Code to be executed with response
+//     }
+// };
 
-// From line 1707 to line 1712 = Code for response handling
+// // From line 1707 to line 1712 = Code for response handling
 
-xhr.open('POST', url);   // This code opens request
-xhr.send(data);         // and sends object
+// xhr.open('POST', url);   // This code opens request
+// xhr.send(data);         // and sends object
 
 
-// Code 53 - XHR POST Requests III
+// // Code 53 - XHR POST Requests III
 
-// Information to reach API
-const apiKey = '<2bcd65023e6c47bca9c93efaa238b6ee>';
-const url = 'https://api.rebrandly.com/v1/links';
+// // Information to reach API
+// const apiKey = '<2bcd65023e6c47bca9c93efaa238b6ee>';
+// const url = 'https://api.rebrandly.com/v1/links';
 
 // Some page elements
 const inputField = document.querySelector('#input');
@@ -1735,166 +1735,166 @@ const shortenUrl = () => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            renderResponse(xhr.response);
-        }
-    }
+    // xhr.onreadystatechange = () => {
+    //     if (xhr.readyState === XMLHttpRequest.DONE) {
+    //         renderResponse(xhr.response);
+    //     }
+    // }
 
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.setRequestHeader('apikey', apiKey);
-    xhr.send(data);
-}
+//     xhr.send(data);
+// }
 
-// Clear page and call AJAX functions
-const displayShortUrl = (event) => {
+// // Clear page and call AJAX functions
+// const displayShortUrl = (event) => {
     event.preventDefault();
     while (responseField.firstChild) {
         responseField.removeChild(responseField.firstChild);
     }
-    shortenUrl();
-}
+//     shortenUrl();
+// }
 
-shortenButton.addEventListener('click', displayShortUrl);
+// shortenButton.addEventListener('click', displayShortUrl);
 
 
-// Code 54 - Intro to requests
+// // Code 54 - Intro to requests
 
-const jsonButton = document.querySelector('#generate');
+// const jsonButton = document.querySelector('#generate');
 const buttonContainer = document.querySelector('#buttonContainer');
 const collection = ["Another", "More", "Next", "Continue", "Keep going", "Click me", "A new one"];
 
 const generateJson = async () => {
     try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        if (response.ok) {
-            const jsonResponse = await response.json();
-            renderResponse(jsonResponse);
-            changeButton();
-        }
+        // if (response.ok) {
+        //     const jsonResponse = await response.json();
+        //     renderResponse(jsonResponse);
+        //     changeButton();
+        // }
     } catch (error) {
         console.log(error);
     }
 };
 
-const formatJson = (resJson) => {
-    resJson = JSON.stringify(resJson);
-    let counter = 0;
-    return resJson.split('').map(char => {
-        switch (char) {
-            case ',':
-                return `,\n${''.repeat(counter * 2)}`;
-            case '{':
-                counter += 1;
-                return `{\n${''.repeat(counter * 2)}`;
-            case '}':
-                counter -= 1;
-                return `\n${''.repeat(counter * 2)}}`;
-            default:
-                return char;
-        }
-    })
-        .join('');
-};
+// const formatJson = (resJson) => {
+//     resJson = JSON.stringify(resJson);
+//     let counter = 0;
+//     return resJson.split('').map(char => {
+//         switch (char) {
+//             case ',':
+//                 return `,\n${''.repeat(counter * 2)}`;
+//             case '{':
+//                 counter += 1;
+//                 return `{\n${''.repeat(counter * 2)}`;
+//             case '}':
+//                 counter -= 1;
+//                 return `\n${''.repeat(counter * 2)}}`;
+//             default:
+//                 return char;
+//         }
+//     })
+//         .join('');
+// };
 
-const renderResponse = (jsonResponse) => {
-    const jsonSelection = Math.floor(Math.random() * 10);
-    display.innerHTML = `<pre>${formatJson(jsonResponse[jsonSelection])}</pre>`;
-};
+// const renderResponse = (jsonResponse) => {
+//     const jsonSelection = Math.floor(Math.random() * 10);
+//     display.innerHTML = `<pre>${formatJson(jsonResponse[jsonSelection])}</pre>`;
+// };
 
-const changeButton = () => {
-    const newText = Math.floor(Math.random() * 7);
-    jsonButton.innerHTML = `${collection[newText]}!`;
-};
+// const changeButton = () => {
+//     const newText = Math.floor(Math.random() * 7);
+//     jsonButton.innerHTML = `${collection[newText]}!`;
+// };
 
-jsonButton.addEventListener('click', generateJson);
-
-
-// Code 55 - fetch GET
-
-// This line sends the request
-fetch('http://api-to-call.com/endpoint').then(response => {
-    if (response.ok) {
-        return response.json();
-    }
-    throw new Error('Request failed!');
-}, networkError => console.log(networkError.message)
-).then(jsonResponse => {
-    return jsonResponse;
-});
+// jsonButton.addEventListener('click', generateJson);
 
 
-// Code 56 - fetch GET request III
+// // Code 55 - fetch GET
 
-const url = 'https://api.datamuse.com/words';
-const queryParams = '?sl=';
-
-// Select page elements
-const inputField = document.querySelector('#input');
-const submit = document.querySelector('#submit');
-const responseField = document.querySelector('#responseField');
-
-// AJAX function
-const getSuggestions = () => {
-    const wordQuery = inputField.value;
-    const endpoint = `${url}${queryParams}${wordQuery}`;
-    fetch(endpoint, { cache: 'no-cache' }).then(response => {
-        if (response.ok) {
-            // renderJsonResponse(response);
-            return response.json();
-        }
-        throw new Error('Request failed!');
-    }, networkError => {
-        console.log(networkError.message)
-    })
-}
-
-// Clears previous results and display results to
-// webpage
-const displaySuggestions = (event) => {
-    event.preventDefault();
-    while (responseField.firstChild) {
-        responseField.removeChild(responseField.firstChild);
-    }
-    getSuggestions();
-};
-
-submit.addEventListener('click', displaySuggestions);
-
-// To receive an array of suggestive words =
-const getSuggestions = () => {
-    const wordQuery = inputField.value;
-    const endpoint = `${url}${queryParams}${wordQuery}`;
-
-    fetch(endpoint, { cache: 'no-cache' }).then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Request failed!');
-    }, networkError => {
-        console.log(networkError.message)
-    }).then(jsonResponse => {
-        renderResponse(jsonResponse);
-    })
-}
+// // This line sends the request
+// fetch('http://api-to-call.com/endpoint').then(response => {
+//     if (response.ok) {
+//         return response.json();
+//     }
+//     throw new Error('Request failed!');
+// }, networkError => console.log(networkError.message)
+// ).then(jsonResponse => {
+//     return jsonResponse;
+// });
 
 
-// Code 57 - fetch POST request I
+// // Code 56 - fetch GET request III
 
-// fetch POST
-fetch('http://api-to-call.com/endpoint', {            //
-    method: 'POST',                                   // This block sends the request
-    body: JSON.stringify({ id: '200' })               // 
-}).then(response => {
-    if (response.ok) {                                //
-        return response.json();                       // This block converts response object to JSON
-    }                                                 //
-    throw new Error('Request failed!');               // This block handles the errors
-}, networkError => console.log(networkError.message)  // 
-).then(jsonResponse => {                              //
-    // Code to be executed with jsonResponse          //  This block handles the success
-});                                                   //
+// const url = 'https://api.datamuse.com/words';
+// const queryParams = '?sl=';
+
+// // Select page elements
+// const inputField = document.querySelector('#input');
+// const submit = document.querySelector('#submit');
+// const responseField = document.querySelector('#responseField');
+
+// // AJAX function
+// const getSuggestions = () => {
+//     const wordQuery = inputField.value;
+//     const endpoint = `${url}${queryParams}${wordQuery}`;
+//     fetch(endpoint, { cache: 'no-cache' }).then(response => {
+//         if (response.ok) {
+//             // renderJsonResponse(response);
+//             return response.json();
+//         }
+//         throw new Error('Request failed!');
+//     }, networkError => {
+//         console.log(networkError.message)
+//     })
+// }
+
+// // Clears previous results and display results to
+// // webpage
+// const displaySuggestions = (event) => {
+//     event.preventDefault();
+//     while (responseField.firstChild) {
+//         responseField.removeChild(responseField.firstChild);
+//     }
+//     getSuggestions();
+// };
+
+// submit.addEventListener('click', displaySuggestions);
+
+// // To receive an array of suggestive words =
+// const getSuggestions = () => {
+//     const wordQuery = inputField.value;
+//     const endpoint = `${url}${queryParams}${wordQuery}`;
+
+//     fetch(endpoint, { cache: 'no-cache' }).then(response => {
+//         if (response.ok) {
+//             return response.json();
+//         }
+//         throw new Error('Request failed!');
+//     }, networkError => {
+//         console.log(networkError.message)
+//     }).then(jsonResponse => {
+//         renderResponse(jsonResponse);
+//     })
+// }
+
+
+// // Code 57 - fetch POST request I
+
+// // fetch POST
+// fetch('http://api-to-call.com/endpoint', {            //
+//     method: 'POST',                                   // This block sends the request
+//     body: JSON.stringify({ id: '200' })               // 
+// }).then(response => {
+//     if (response.ok) {                                //
+//         return response.json();                       // This block converts response object to JSON
+//     }                                                 //
+//     throw new Error('Request failed!');               // This block handles the errors
+// }, networkError => console.log(networkError.message)  // 
+// ).then(jsonResponse => {                              //
+//     // Code to be executed with jsonResponse          //  This block handles the success
+// });                                                   //
 
 
 
