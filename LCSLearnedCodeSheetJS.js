@@ -1492,16 +1492,16 @@ const formatJson = (resJson) => {
             case ',':
                 return `,\n${''.repeat(counter * 2)}`;
             case '{':
-                counter =+ 1;
-                return `{\n${''.repeat(counter*2)}`;
+                counter = + 1;
+                return `{\n${''.repeat(counter * 2)}`;
             case '}':
-                counter-= 1;
-                return `\n${''.repeat(counter*2)}}`;
+                counter -= 1;
+                return `\n${''.repeat(counter * 2)}}`;
             default:
                 return char;
         }
     })
-    .join('');
+        .join('');
 }
 
 const renderResponse = (jsonResponse) => {
@@ -1519,12 +1519,12 @@ jsonButton.addEventListener('click', generateJson);
 // Code 46 - Concurrency model and event loop - Stack
 
 // Example code 01
-function foo(y){
+function foo(y) {
     let x = 10
-    return x + y + 11 
+    return x + y + 11
 }
 
-function bar(a){
+function bar(a) {
     let b = 3
     return foo(a * b)
 }
@@ -1536,14 +1536,14 @@ console.log(bar(7)) // Returns 42
 
 // Code example 01
 const sVar = new Date().getSeconds();
-setTimeout(function(){
+setTimeout(function () {
     // Prints out "2", meaning tha tthe callback is not
     // called immediately after 500ms (milliseconds).
     console.log("Ran after " + (new Date().getSeconds() - sVar) + "seconds.");
 }, 500)
 
-while (true){
-    if (new Date().getSeconds() - sVar >= 2){
+while (true) {
+    if (new Date().getSeconds() - sVar >= 2) {
         console.log("Good, looped for 02 seconds.")
         break;
     }
@@ -1552,18 +1552,18 @@ while (true){
 
 // Code 48 - Zero delays
 
-(function() {
+(function () {
     console.log('this is the start');
 
-    setTimeout(function cbVar(){
+    setTimeout(function cbVar() {
         console.log('Callback 01 = This is a message from callback');
-        }); // Default time value = 0
+    }); // Default time value = 0
 
     console.log('this is just a message');
 
-    setTimeout(function cbVar01(){
-        console.log('Callback 02: this is a message from callback' );
-    },0);
+    setTimeout(function cbVar01() {
+        console.log('Callback 02: this is a message from callback');
+    }, 0);
 
     console.log('This is the end');
 
@@ -1595,7 +1595,7 @@ const url = 'http://api-to-call.com/endpoint';
 
 xhr.responseType = 'json';
 xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE){
+    if (xhr.readyState === XMLHttpRequest.DONE) {
         // Code to execute with response
     }
 };
@@ -1622,18 +1622,18 @@ const responseFields = document.querySelector('#responseField');
 const getSuggestions = () => {
     const wordQuery = inputField.value;
     const endpoint = `${url}${queryParams}${wordQuery}`;
-    
+
     const xhr = new XMLHttpRequest();
-    xhr.responseType='json';
+    xhr.responseType = 'json';
     xhr.onreadystatechange = () => {
-        if(xhr.readyState === XMLHttpRequest.DONE){
+        if (xhr.readyState === XMLHttpRequest.DONE) {
             // renderRawResponse(xhr.response);
             // The line above can be replaced by:
-            renderResponse(xhr.response); 
+            renderResponse(xhr.response);
         }
     }
 
-    xhr.open('GET',endpoint);
+    xhr.open('GET', endpoint);
     xhr.send();
 }
 
@@ -1642,7 +1642,7 @@ const getSuggestions = () => {
 
 const displaySuggestion = (event) => {
     event.preventDefault();
-    while(responseFields.firstChild){
+    while (responseFields.firstChild) {
         responseFields.removeChild(responseField.firstChild);
     };
     getSuggestions();
@@ -1650,7 +1650,7 @@ const displaySuggestion = (event) => {
 
 submit.addEventListener('click', displaySuggestions);
 
-    
+
 // Code 51 - XML GET Requests IV
 
 // Information to reach API
@@ -1673,12 +1673,12 @@ const getSuggestions = () => {
     xhr.responseType = 'json';
 
     xhr.onreadystatechange = () => {
-        if(xhr.readyState === XMLHttpRequest.DONE){
+        if (xhr.readyState === XMLHttpRequest.DONE) {
             renderResponse(xhr.response);
         }
     }
 
-    xhr.open('GET',endpoint);
+    xhr.open('GET', endpoint);
     xhr.send();
 }
 
@@ -1687,7 +1687,7 @@ const additionalParams = '&topics=';
 // Clear previous results and shows the results to webpage
 const displaySuggestions = (event) => {
     event.preventDefault();
-    while(responseField.firstChild){
+    while (responseField.firstChild) {
         responseField.removeChild(responseField.firstChild);
     }
     getSuggestions();
@@ -1706,14 +1706,14 @@ const data = JSON.stringify(id: '200'); // Converts data to a string
 
 xhr.responseType = 'json';
 xhr.onreadystatechange = () => {
-    if(xhr.readyState === XMLHttpRequest.DONE){
+    if (xhr.readyState === XMLHttpRequest.DONE) {
         // Code to be executed with response
     }
 };
 
 // From line 1707 to line 1712 = Code for response handling
 
-xhr.open('POST',url);   // This code opens request
+xhr.open('POST', url);   // This code opens request
 xhr.send(data);         // and sends object
 
 
@@ -1731,70 +1731,70 @@ const responseField = document.querySelector('#responseField');
 // AJAX functions
 const shortenUrl = () => {
     const urlToShorten = inputField.value;
-    const data = JSON.stringify({destination: urlToShorten});
+    const data = JSON.stringify({ destination: urlToShorten });
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.onreadystatechange = () => {
-        if(xhr.readyState === XMLHttpRequest.DONE){
+        if (xhr.readyState === XMLHttpRequest.DONE) {
             renderResponse(xhr.response);
         }
     }
 
-    xhr.open('POST',url);
-    xhr.setRequestHeader('Content-type','application/json');
-    xhr.setRequestHeader('apikey',apiKey);
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader('apikey', apiKey);
     xhr.send(data);
 }
 
 // Clear page and call AJAX functions
 const displayShortUrl = (event) => {
     event.preventDefault();
-    while(responseField.firstChild){
+    while (responseField.firstChild) {
         responseField.removeChild(responseField.firstChild);
     }
     shortenUrl();
 }
 
-shortenButton.addEventListener('click',displayShortUrl);
+shortenButton.addEventListener('click', displayShortUrl);
 
 
 // Code 54 - Intro to requests
 
 const jsonButton = document.querySelector('#generate');
 const buttonContainer = document.querySelector('#buttonContainer');
-const collection = ["Another", "More","Next","Continue","Keep going", "Click me", "A new one"];
+const collection = ["Another", "More", "Next", "Continue", "Keep going", "Click me", "A new one"];
 
 const generateJson = async () => {
-    try{
+    try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        if(response.ok){
+        if (response.ok) {
             const jsonResponse = await response.json();
             renderResponse(jsonResponse);
             changeButton();
         }
-    } catch(error){
+    } catch (error) {
         console.log(error);
     }
 };
 
 const formatJson = (resJson) => {
-        resJson = JSON.stringify(resJson);
-        let counter = 0;
-        return resJson.split('').map(char => {
-            switch(char){
-                case ',':
-                    return `,\n${''.repeat(counter * 2)}`;
-                case '{':
-                    counter += 1;
-                    return `{\n${''.repeat(counter *2)}`;
-                case '}':
-                    counter -= 1;
-                    return `\n${''.repeat(counter *2)}}`;
-                default:
-                    return char;
-            }
-        })
+    resJson = JSON.stringify(resJson);
+    let counter = 0;
+    return resJson.split('').map(char => {
+        switch (char) {
+            case ',':
+                return `,\n${''.repeat(counter * 2)}`;
+            case '{':
+                counter += 1;
+                return `{\n${''.repeat(counter * 2)}`;
+            case '}':
+                counter -= 1;
+                return `\n${''.repeat(counter * 2)}}`;
+            default:
+                return char;
+        }
+    })
         .join('');
 };
 
@@ -1808,21 +1808,21 @@ const changeButton = () => {
     jsonButton.innerHTML = `${collection[newText]}!`;
 };
 
-jsonButton.addEventListener('click',generateJson);
+jsonButton.addEventListener('click', generateJson);
 
 
 // Code 55 - fetch GET
 
 // This line sends the request
 fetch('http://api-to-call.com/endpoint').then(response => {
-    if(response.ok){
+    if (response.ok) {
         return response.json();
     }
     throw new Error('Request failed!');
-    }, networkError => console.log(networkError.message)
-    ).then(jsonResponse => {
-        return jsonResponse;
-    });
+}, networkError => console.log(networkError.message)
+).then(jsonResponse => {
+    return jsonResponse;
+});
 
 
 // Code 56 - fetch GET request III
@@ -1839,8 +1839,8 @@ const responseField = document.querySelector('#responseField');
 const getSuggestions = () => {
     const wordQuery = inputField.value;
     const endpoint = `${url}${queryParams}${wordQuery}`;
-    fetch(endpoint,{cache: 'no-cache'}).then(response => {
-        if(response.ok){
+    fetch(endpoint, { cache: 'no-cache' }).then(response => {
+        if (response.ok) {
             // renderJsonResponse(response);
             return response.json();
         }
@@ -1854,7 +1854,7 @@ const getSuggestions = () => {
 // webpage
 const displaySuggestions = (event) => {
     event.preventDefault();
-    while(responseField.firstChild){
+    while (responseField.firstChild) {
         responseField.removeChild(responseField.firstChild);
     }
     getSuggestions();
@@ -1866,18 +1866,35 @@ submit.addEventListener('click', displaySuggestions);
 const getSuggestions = () => {
     const wordQuery = inputField.value;
     const endpoint = `${url}${queryParams}${wordQuery}`;
-    
-    fetch(endpoint, {cache: 'no-cache'}).then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Request failed!');
+
+    fetch(endpoint, { cache: 'no-cache' }).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Request failed!');
     }, networkError => {
-      console.log(networkError.message)
+        console.log(networkError.message)
     }).then(jsonResponse => {
-      renderResponse(jsonResponse);
+        renderResponse(jsonResponse);
     })
-  }
+}
+
+
+// Code 57 - fetch POST request I
+
+// fetch POST
+fetch('http://api-to-call.com/endpoint', {            //
+    method: 'POST',                                   // This block sends the request
+    body: JSON.stringify({ id: '200' })               // 
+}).then(response => {
+    if (response.ok) {                                //
+        return response.json();                       // This block converts response object to JSON
+    }                                                 //
+    throw new Error('Request failed!');               // This block handles the errors
+}, networkError => console.log(networkError.message)  // 
+).then(jsonResponse => {                              //
+    // Code to be executed with jsonResponse          //  This block handles the success
+});                                                   //
 
 
 
