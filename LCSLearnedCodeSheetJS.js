@@ -1821,6 +1821,12 @@ fetch('http://api-to-call.com/endpoint').then(response => {
     throw new Error('Request failed!');
     }, networkError => console.log(networkError.message)
     ).then(jsonResponse => {
-        // Code to execute with jsonResponse
+        return jsonResponse;
     });
+
+
+
+
+
+
 
