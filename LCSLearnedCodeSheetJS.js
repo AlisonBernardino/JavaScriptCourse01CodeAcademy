@@ -1894,8 +1894,25 @@
 // // }, networkError => console.log(networkError.message)  // 
 // // ).then(jsonResponse => {                              //
 // //     // Code to be executed with jsonResponse          //  This block handles the success
-// // });                                                   //
+// // });   
+//
 
+
+// fetch POST request II
+
+fetch('https://api-to-call.com/endpoint', {
+    method: 'POST',
+    body: JSON.stringify({id: "200"})
+}).then(response => {
+    if(response.ok) {
+        return response.json();
+    }
+    throw new Error('Request failed!');
+}, networkError => {
+    console.log(networkError.message);
+}).then(jsonResponse => {
+    return jsonResponse;
+})
 
 
 
