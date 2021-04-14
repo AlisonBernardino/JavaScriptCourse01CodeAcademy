@@ -1898,13 +1898,13 @@
 //
 
 
-// fetch POST request II
+// Code 58 - fetch POST request II
 
 fetch('https://api-to-call.com/endpoint', {
     method: 'POST',
-    body: JSON.stringify({id: "200"})
+    body: JSON.stringify({ id: "200" })
 }).then(response => {
-    if(response.ok) {
+    if (response.ok) {
         return response.json();
     }
     throw new Error('Request failed!');
@@ -1914,6 +1914,90 @@ fetch('https://api-to-call.com/endpoint', {
     return jsonResponse;
 })
 
+
+// Code 59 - fetch POST requests III
+
+// Data to reach API
+const apiKey = '<Your key here (Generated Rebrandly API key)>';
+const url = 'https://api.rebrandly.com/v1/links';
+
+// Some page elements
+const inputField = document.querySelector('#input');
+const shortenButton = document.querySelector('#shorten');
+const responseField = document.querySelector('#responseField');
+
+
+// AJAX functions
+const shortenUrl = () => {
+    const urlToShorten = inputField.value;
+    const data = JSON.stringify({ destination: urlToShorten })
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'apikey': apiKey
+        },
+        body: data
+    })
+}
+
+// To clear page and call AJAX functions
+const displayShortUrl = (event) => {
+    event.preventDefault();
+    while (responseField.firstChild) {
+        responseField.removeChild(responseField.firstChild)
+    }
+    shortenUrl();
+}
+
+shortenButton.addEventListener('click', displayShortUrl);
+
+
+// Code 60 - fetch() POST requests IV
+
+// Info to reach the API
+const apiKey = '<The API key goes here>';
+const url = 'https://api.rebrandly.com/v1/links';
+
+// Some page elements
+const inputField = document.querySelector('#input');
+const shortenButton = document.querySelector('#shorten');
+const responseField = document.querySelector('#responseField');
+
+// AJAX functions
+const shortenUrl = () => {
+    const urlToShorten = inputField.value;
+    const data = JSON.stringify({destination: urlToShorten})
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'apikey': apiKey
+        },
+        body: data
+    }).then(response => {
+        if (response.ok){
+            // renderJsonResponse(response);
+            return response.json();
+        }
+        throw new Error('Request failed!');
+    }, networkError => {
+        console.log(networkError.message)
+    })
+}
+
+// Clear page and call AJAX functions
+const displayShortUrl = (event) => {
+    event.preventDefault();
+    while(responseField.firstChild){
+        responseField.removeChild(responseField.firstChild)
+    }
+    shortenUrl();
+}
+
+shortenButton.addEventListener('click', displayShortUrl);
 
 
 
