@@ -2022,161 +2022,161 @@ async function getData() {
 }
 
 
-// Code 62 - async GET requests II
+// // Code 62 - async GET requests II
 
-const getData = async () => {
-    try {
-        const response = await fetch('https://api-to-call.com/endpoint');
-        if(response.ok){
-            const jsonResponse = await response.json();
-            return jsonResponse;
-        }
-        throw new Error('Request failed!');
-    } catch(error){
-        console.log(error);
-    }
-}
-
-
-// Code 63 - async GET requests III
-
-const url = 'https://api.datamuse.com/words?';
-const queryParams = 'rel_jja=';
-
-// Selecting page elements
-const inputField = document.querySelector('#input');
-const submit = document.querySelector('#submit');
-const responseField = document.querySelector('#responseField');
-
-// AJAX functions
-const getSuggestions = async() => {
-    const wordQuery = inputField.value;
-    const endpoint = `${url}${queryParams}${wordQuery}`;
-    try {
-        const response = await fetch(endpoint,{cache: 'no-cache'});
-        if(response.ok){
-            const jsonResponse = await response.json();
-            // This commented line 2060 show the raw results on the screen
-            // renderRawResponse(jsonResponse);
-            renderResponse(jsonResponse);
-        }
-    } catch(error){
-        console.log(error);
-    }
-}
-
-// Clear previous results and display results to the webpage
-const displaySuggestions = (event) => {
-    event.preventDefault();
-    while(responseField.firstchild){
-        responseField.removeChild(responsefield.firstChild)
-    }
-    getSuggestions();
-}
-
-submit.addEventListener('click',displaySuggestions);
+// const getData = async () => {
+//     try {
+//         const response = await fetch('https://api-to-call.com/endpoint');
+//         if(response.ok){
+//             const jsonResponse = await response.json();
+//             return jsonResponse;
+//         }
+//         throw new Error('Request failed!');
+//     } catch(error){
+//         console.log(error);
+//     }
+// }
 
 
-// Code 64 - async POST requests II
+// // Code 63 - async GET requests III
 
-const getData = async () => {
-    try{
-        const response = await fetch('https://api-to-call.com/endpoint', {
-            method: 'POST',
-            body: JSON.stringify({id: 200});
-        })
-        if(response.ok){
-            const jsonResponse = await response.json();
-            return jsonResponse;
-        }
-        throw new Error('Request failed!');
-        } catch(error){
-            console.log(error);
-        }
-}
+// const url = 'https://api.datamuse.com/words?';
+// const queryParams = 'rel_jja=';
+
+// // Selecting page elements
+// const inputField = document.querySelector('#input');
+// const submit = document.querySelector('#submit');
+// const responseField = document.querySelector('#responseField');
+
+// // AJAX functions
+// const getSuggestions = async() => {
+//     const wordQuery = inputField.value;
+//     const endpoint = `${url}${queryParams}${wordQuery}`;
+//     try {
+//         const response = await fetch(endpoint,{cache: 'no-cache'});
+//         if(response.ok){
+//             const jsonResponse = await response.json();
+//             // This commented line 2060 show the raw results on the screen
+//             // renderRawResponse(jsonResponse);
+//             renderResponse(jsonResponse);
+//         }
+//     } catch(error){
+//         console.log(error);
+//     }
+// }
+
+// // Clear previous results and display results to the webpage
+// const displaySuggestions = (event) => {
+//     event.preventDefault();
+//     while(responseField.firstchild){
+//         responseField.removeChild(responsefield.firstChild)
+//     }
+//     getSuggestions();
+// }
+
+// submit.addEventListener('click',displaySuggestions);
 
 
-// Final code - Requests II
+// // Code 64 - async POST requests II
 
-// NOTE: wordSmith functions from lines 4-39
-// NOTE02: byteSize functions from lines 48-81
-// (Remember to add my API key)
+// const getData = async () => {
+//     try{
+//         const response = await fetch('https://api-to-call.com/endpoint', {
+//             method: 'POST',
+//             body: JSON.stringify({id: 200});
+//         })
+//         if(response.ok){
+//             const jsonResponse = await response.json();
+//             return jsonResponse;
+//         }
+//         throw new Error('Request failed!');
+//         } catch(error){
+//             console.log(error);
+//         }
+// }
 
-// Info to reach API
-const dataMuseUrl = 'https://api.datamuse.com/words?';
-const queryParams = 'rel_jjb=';
 
-// Selecting the page elements
-const inputFueld = document.querySelector('#input');
-const submit = document.querySelector('#submit');
-const responseField = document.querySelector('#responseField');
+// // Final code - Requests II
 
-// AJAX function
-const getSuggestions = async () => {
-    const wordQuery = inputField.value;
-    const endpoint = dataMuseUrl + queryParams + wordQuery;
+// // NOTE: wordSmith functions from lines 4-39
+// // NOTE02: byteSize functions from lines 48-81
+// // (Remember to add my API key)
 
-    try{
-        const response = await fetch(endpoint);
-        if(response.ok){
-            let josnResponse = await response.json();
-            renderWordResponse(jsonResponse);
-        }
-    }
-    catch(error){
-        console.log(error);
-    }
-}
+// // Info to reach API
+// const dataMuseUrl = 'https://api.datamuse.com/words?';
+// const queryParams = 'rel_jjb=';
 
-// Clear previous results and display results to webpage
-const displaySuggestions = (event) => {
-    event.preventDefault();
-    while(responseField.firstChild){
-        responseField.removeChild(responseField.firstChild);
-    }
-    getSuggestions();
-}
+// // Selecting the page elements
+// const inputFueld = document.querySelector('#input');
+// const submit = document.querySelector('#submit');
+// const responseField = document.querySelector('#responseField');
 
-submit.addEventListener('click',displaySuggestions);
+// // AJAX function
+// const getSuggestions = async () => {
+//     const wordQuery = inputField.value;
+//     const endpoint = dataMuseUrl + queryParams + wordQuery;
 
-// Info to reach Rebrandly API
-const apiKey = '<My API key>';
-const rebrandlyEndpoint = 'https://api.rebrandly.com/v1/links';
+//     try{
+//         const response = await fetch(endpoint);
+//         if(response.ok){
+//             let josnResponse = await response.json();
+//             renderWordResponse(jsonResponse);
+//         }
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+// }
 
-// Element selector
-const shortenButton = document.querySelector('#shorten');
+// // Clear previous results and display results to webpage
+// const displaySuggestions = (event) => {
+//     event.preventDefault();
+//     while(responseField.firstChild){
+//         responseField.removeChild(responseField.firstChild);
+//     }
+//     getSuggestions();
+// }
 
-// AJAX functions
-const shortenUrl = async () => {
-    const urlToShorten = inputField.value;
-    const data = JSON.stringify({destination: urlToShorten});
+// submit.addEventListener('click',displaySuggestions);
 
-    try{
-        const response = await fetch(rebrandlyEndpoint, {
-            method: 'POST',
-            body: data,
-            headers: {
-                "Content-type": "application/json",
-                'apikey': apiKey
-            }
-        })
-        if(response.ok){
-            const jsonResponse = await response.json();
-            renderByteResponse(jsonResponse);
-        }
-    }
-    catch(error){
-        console.log(error);
-    }
-}
+// // Info to reach Rebrandly API
+// const apiKey = '<My API key>';
+// const rebrandlyEndpoint = 'https://api.rebrandly.com/v1/links';
 
-// Clear page and call AJAX functions
-const displayShortUrl = (event) => {
-    event.preventDefault();
-    while(responseField.firstChild){
-        responseField.removeChild(responseField.firstChild);
-    }
-    shortenUrl();
-}
+// // Element selector
+// const shortenButton = document.querySelector('#shorten');
 
-shortenButton.addEventListener('click', displayShortUrl);
+// // AJAX functions
+// const shortenUrl = async () => {
+//     const urlToShorten = inputField.value;
+//     const data = JSON.stringify({destination: urlToShorten});
+
+//     try{
+//         const response = await fetch(rebrandlyEndpoint, {
+//             method: 'POST',
+//             body: data,
+//             headers: {
+//                 "Content-type": "application/json",
+//                 'apikey': apiKey
+//             }
+//         })
+//         if(response.ok){
+//             const jsonResponse = await response.json();
+//             renderByteResponse(jsonResponse);
+//         }
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+// }
+
+// // Clear page and call AJAX functions
+// const displayShortUrl = (event) => {
+//     event.preventDefault();
+//     while(responseField.firstChild){
+//         responseField.removeChild(responseField.firstChild);
+//     }
+//     shortenUrl();
+// }
+
+// shortenButton.addEventListener('click', displayShortUrl);
