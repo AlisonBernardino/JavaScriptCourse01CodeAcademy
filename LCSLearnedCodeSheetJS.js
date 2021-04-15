@@ -1968,7 +1968,7 @@ const responseField = document.querySelector('#responseField');
 // AJAX functions
 const shortenUrl = () => {
     const urlToShorten = inputField.value;
-    const data = JSON.stringify({destination: urlToShorten})
+    const data = JSON.stringify({ destination: urlToShorten })
 
     fetch(url, {
         method: 'POST',
@@ -1978,7 +1978,7 @@ const shortenUrl = () => {
         },
         body: data
     }).then(response => {
-        if (response.ok){
+        if (response.ok) {
             // renderJsonResponse(response);
             return response.json();
         }
@@ -1991,13 +1991,35 @@ const shortenUrl = () => {
 // Clear page and call AJAX functions
 const displayShortUrl = (event) => {
     event.preventDefault();
-    while(responseField.firstChild){
+    while (responseField.firstChild) {
         responseField.removeChild(responseField.firstChild)
     }
     shortenUrl();
 }
 
 shortenButton.addEventListener('click', displayShortUrl);
+
+
+// Code 61 - async await GET 
+
+// Example code 01
+async function getData() {
+    try {
+        // This part sends the request
+        const response = await fetch('https://api-to-call.com/endpoint');
+
+        // From line 2012 to 2015 = If the response is successful, this block handles it
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            // Code to be executed with jsonResponse
+        }
+    
+    // From line 2017 to 2021 = If the response is unsuccessful, this block handles it
+        throw new Error('Request failed!');
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
