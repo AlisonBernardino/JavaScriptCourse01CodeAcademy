@@ -1894,9 +1894,148 @@
 // // }, networkError => console.log(networkError.message)  // 
 // // ).then(jsonResponse => {                              //
 // //     // Code to be executed with jsonResponse          //  This block handles the success
-// // });                                                   //
+// // });   
+//
 
 
+// Code 58 - fetch POST request II
+
+fetch('https://api-to-call.com/endpoint', {
+    method: 'POST',
+    body: JSON.stringify({ id: "200" })
+}).then(response => {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error('Request failed!');
+}, networkError => {
+    console.log(networkError.message);
+}).then(jsonResponse => {
+    return jsonResponse;
+})
+
+
+// Code 59 - fetch POST requests III
+
+// Data to reach API
+const apiKey = '<Your key here (Generated Rebrandly API key)>';
+const url = 'https://api.rebrandly.com/v1/links';
+
+// Some page elements
+const inputField = document.querySelector('#input');
+const shortenButton = document.querySelector('#shorten');
+const responseField = document.querySelector('#responseField');
+
+
+// AJAX functions
+const shortenUrl = () => {
+    const urlToShorten = inputField.value;
+    const data = JSON.stringify({ destination: urlToShorten })
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'apikey': apiKey
+        },
+        body: data
+    })
+}
+
+// To clear page and call AJAX functions
+const displayShortUrl = (event) => {
+    event.preventDefault();
+    while (responseField.firstChild) {
+        responseField.removeChild(responseField.firstChild)
+    }
+    shortenUrl();
+}
+
+shortenButton.addEventListener('click', displayShortUrl);
+
+
+// Code 60 - fetch() POST requests IV
+
+// Info to reach the API
+const apiKey = '<The API key goes here>';
+const url = 'https://api.rebrandly.com/v1/links';
+
+// Some page elements
+const inputField = document.querySelector('#input');
+const shortenButton = document.querySelector('#shorten');
+const responseField = document.querySelector('#responseField');
+
+// AJAX functions
+const shortenUrl = () => {
+    const urlToShorten = inputField.value;
+    const data = JSON.stringify({ destination: urlToShorten })
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'apikey': apiKey
+        },
+        body: data
+    }).then(response => {
+        if (response.ok) {
+            // renderJsonResponse(response);
+            return response.json();
+        }
+        throw new Error('Request failed!');
+    }, networkError => {
+        console.log(networkError.message)
+    })
+}
+
+// Clear page and call AJAX functions
+const displayShortUrl = (event) => {
+    event.preventDefault();
+    while (responseField.firstChild) {
+        responseField.removeChild(responseField.firstChild)
+    }
+    shortenUrl();
+}
+
+shortenButton.addEventListener('click', displayShortUrl);
+
+
+// Code 61 - async await GET 
+
+// Example code 01
+async function getData() {
+    try {
+        // This part sends the request
+        const response = await fetch('https://api-to-call.com/endpoint');
+
+        // From line 2012 to 2015 = If the response is successful, this block handles it
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            // Code to be executed with jsonResponse
+        }
+    
+    // From line 2017 to 2021 = If the response is unsuccessful, this block handles it
+        throw new Error('Request failed!');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// Code 62 - async GET requests II
+
+const getData = async () => {
+    try {
+        const response = await fetch('https://api-to-call.com/endpoint');
+        if(response.ok){
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        }
+        throw new Error('Request failed!');
+    } catch(error){
+        console.log(error);
+    }
+}
 
 
 
