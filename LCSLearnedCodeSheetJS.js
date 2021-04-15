@@ -2038,5 +2038,43 @@ const getData = async () => {
 }
 
 
+// Code 63 - async GET requests III
+
+const url = 'https://api.datamuse.com/words?';
+const queryParams = 'rel_jja=';
+
+// Selecting page elements
+const inputField = document.querySelector('#input');
+const submit = document.querySelector('#submit');
+const responseField = document.querySelector('#responseField');
+
+// AJAX functions
+const getSuggestions = async() => {
+    const wordQuery = inputField.value;
+    const endpoint = `${url}${queryParams}${wordQuery}`;
+    try {
+        const response = await fetch(endpoint,{cache: 'no-cache'});
+        if(response.ok){
+            const jsonResponse = await response.json();
+            // This commented line 2060 show the raw results on the screen
+            // renderRawResponse(jsonResponse);
+            renderResponse(jsonResponse);
+        }
+    } catch(error){
+        console.log(error);
+    }
+}
+
+// Clear previous results and display results to the webpage
+const displaySuggestions = (event) => {
+    event.preventDefault();
+    while(responseField.firstchild){
+        responseField.removeChild(responsefield.firstChild)
+    }
+    getSuggestions();
+}
+
+submit.addEventListener('click',displaySuggestions);
+
 
 
